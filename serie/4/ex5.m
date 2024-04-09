@@ -42,9 +42,9 @@ grid on
 
 % Plot lines for xvect
 colors = ['r', 'g', 'b', 'm', 'c', 'y', 'k'];
-for i = 1:size(xvect, 1)-1
+for i = 1:size(xvect, 2)-1
     hold on
-    plot([xvect(i, 1), xvect(i+1, 1)], [xvect(i, 2), xvect(i+1, 2)], colors(mod(i, 7)+1));
+    plot([xvect(1, i), xvect(1, i+1)], [xvect(2, i), xvect(2, i+1)], colors(mod(i, 7)+1));
 end
 
 plot(phi_min(1), phi_min(2), 'rx');

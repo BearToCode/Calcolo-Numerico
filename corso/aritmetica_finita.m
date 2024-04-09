@@ -22,6 +22,7 @@ fprintf('Epsilon macchina: %E\n', eps);
 % fl(2) = 2 (sistema binario)
 % il successivo lo posso determinare come:
 
+%                   👇 2 = # cifre a sinistra della virgola
 % s = 0, cifre = [1 0 0 1]', b = 2, e = 2
 %                   👆 t cifre
 next = floating_point(0, [1 0 0 1]', 2, 2);

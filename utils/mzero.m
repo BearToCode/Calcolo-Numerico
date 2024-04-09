@@ -6,7 +6,7 @@ function m = mzero(f, a)
 
   while 1
     fn = matlabFunction(df);
-    err = eval(abs(fn(a)));
+    err = abs(fn(a));
     if err > 1e-10
       if m == 0
         warning('mzero: a non è zero di f');

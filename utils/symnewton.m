@@ -8,7 +8,7 @@ function [x, it, xvect] = symnewton(x0, nmax, tol, symfun, mol)
   prev_x = x0;
   x = x0;
   
-  xvect = zeros(nmax + 1, length(x0));
+  xvect = zeros(length(x0), nmax + 1);
   xvect(:, 1) = x0;
 
   fun = matlabFunction(symfun);
