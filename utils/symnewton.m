@@ -1,4 +1,22 @@
-function [x, it, xvect] = symnewton(x0, nmax, tol, symfun, mol)  
+function [x, it, xvect] = symnewton(x0, nmax, tol, symfun, symJ, mol)
+% SYMNEWTON Implementazione del metodo di Newton per funzioni simboliche, non lineari, multidimensionali.
+%
+% [x, it, xvect] = symnewton(x0, nmax, tol, symfun, symJ, mol)
+%
+% Parametri di ingresso:
+% x0           Vettore iniziale
+% nmax         Numero massimo di iterazioni
+% tol          Tolleranza
+% symfun       Funzione di cui si cerca lo zero
+% symJ         Jacobiana della funzione di cui si cerca lo zero. Opzionale, usa [] per calcolarla automaticamente.
+% mol          Molteplicita' dello zero.
+%
+% Parametri di uscita:
+% x            Approssimazione dello zero
+% xvect        Vettore contenente tutte le iterate
+%              xvect = [ x0, x1, x2, ... ] dimensione ( it + 1 )
+% it           Numero di iterazioni effettuate
+  
   if nargin < 6
     mol = 1;
   end
@@ -12,7 +30,12 @@ function [x, it, xvect] = symnewton(x0, nmax, tol, symfun, mol)
   xvect(:, 1) = x0;
 
   fun = matlabFunction(symfun);
-  J = jacobian(symfun);
+  % Lascia la matrice jacobiana simbolica opzionale
+  if isa(symJ, 'sym')
+    J = symJ;
+  else
+    J = jacobian(symfun);
+  end
   dfun = matlabFunction(J);
 
   while err > tol

@@ -10,7 +10,7 @@ function [xvect, it] = newton(x0, nmax, tol, fun, dfun, mol)
 % tol        Tolleranza
 % fun        Funzione di cui si cerca lo zero
 % dfun       Derivata della funzione di cui si cerca lo zero
-% mol        Moltiplicatore per il calcolo della direzione di discesa(1 di default)
+% mol        Molteplicita' dello zero.
 %
 % Parametri di uscita:
 % xvect      Vettore contenente tutte le iterate
