@@ -16,7 +16,7 @@ function D = qrbasic(A, tol, nmax)
         A_k = R * Q;
 
         err = max(max(abs(tril(A_k, -1))));
-        fprintf('Iterazione %d, errore = %e\n', iter, err);
+        % fprintf('Iterazione %d, errore = %e\n', iter, err);
     end
 
     if iter == nmax

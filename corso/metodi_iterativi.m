@@ -28,6 +28,10 @@
 
 % La matrice di iterazione è B = D^-1(D - A)
 
+% Converge <=> raggio spettrale di B < 1
+% Stima errore: ||e_k|| = rho^k * ||e_0||
+% OPPURE:       ||e_k|| <= K2(A) * res_k
+
 % Esempio
 
 A = [1 0 0;
@@ -60,6 +64,10 @@ assert(all(abs(A \ b - x) < toll));
 
 % La matrice di iterazione è B = I - T^-1 * A
 % Con T = D - E = tril(A)
+
+% Converge <=> raggio spettrale di B < 1
+% Stima errore: ||e_k|| <= rho^k * ||e_0||
+% OPPURE:       ||e_k|| <= K2(A) * res_k
 
 % Esempio
 
