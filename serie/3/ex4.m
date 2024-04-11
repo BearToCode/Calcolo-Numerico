@@ -16,7 +16,7 @@ A_alpha = A(alpha);
 tol = 10^-10;
 nmax = 1000;
 
-D1 = qrbasic(A_alpha, tol, nmax);
+[D1] = qrbasic(A_alpha, tol, nmax);
 
 fprintf('Autovalori di A(30):\n');
 disp(D1);
@@ -28,7 +28,7 @@ disp(D1);
 alpha = -30;
 A_alpha = A(alpha);
 
-D2 = qrbasic(A_alpha, tol, nmax);
+[D2] = qrbasic(A_alpha, tol, nmax);
 
 fprintf('Autovalori di A(-30):\n');
 disp(D2);

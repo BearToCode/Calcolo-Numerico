@@ -107,11 +107,12 @@ assert(all(abs(A \ b - x) < toll));
 
 % a dipende da k secondo la formula:
 % a_k = (r_k^T * r_k) / (r_k^T * A * r_k)
+% ||e_k||A <= d^k ||e_0||A, cond d = (K(P^-1 * A) - 1) / (K(P^-1 * A) + 1
+
 
 %% Teorema di convergenza del metodo del gradiente
 
 % Il metodo del gradiente PRECONDIZIONATO converge (per A SDP) per qualsiasi scelta x_0 e vale
-% ||e_k||A <= d^k ||e_0||A, cond d = (K(P^-1 * A) - 1) / (K(P^-1 * A) + 1
 
 %% Metodo del gradiente coniugato
 

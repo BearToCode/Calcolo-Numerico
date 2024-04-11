@@ -77,7 +77,7 @@ A = [1 2 3;
 tol = 1e-6;
 nmax = 1000;
 
-approx = qrbasic(A, tol, nmax);
+[approx] = qrbasic(A, tol, nmax);
 assert(norm(sort(approx) - sort(eig(A))) < tol)
 
 %% SVD

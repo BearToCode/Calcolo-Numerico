@@ -1,4 +1,4 @@
-function D = qrbasic(A, tol, nmax)
+function [D, iter] = qrbasic(A, tol, nmax)
 
     if check()
         [rows, cols] = size(A);

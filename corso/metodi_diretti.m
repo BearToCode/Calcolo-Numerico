@@ -109,8 +109,8 @@ R = chol(A);
 % Posso poi risolvere il sistema Ax = b con due sostituzioni in avanti e 
 % indietro semplificate
 
-% #operazioni fattorizzazione = 4n - 3
-% #operazioni risoluzione = 2n
+% #operazioni fattorizzazione = 3(n-1)
+% #operazioni risoluzione = 2(n-1) + 3(n-1) + 1
 
 A = [1 2 0 0; ...
      3 4 5 0; ...

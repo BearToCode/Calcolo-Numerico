@@ -104,19 +104,15 @@ fprintf('Il valore di beta che minimizza il fattore di abbattimento è %d con d 
 % potenze e potenze inverse. Si riporti inoltre il numero di operazioni effettuato per
 % l’approssimazione di K(A) con l’algoritmo proposto.
 
-K_approx = @(A, tol, nmax, x0) eigpower(A, tol, nmax, x0) / invpower(A, tol, nmax, x0);
-tol = 1e-6;
-nmax = 1000;
-x0 = ones(n, 1);
-err = K_approx(A, tol, nmax, x0) - K(A);
+% Guarda sdpcond.m
 
 % 6. Si consideri il metodo delle iterazioni QR per l’approssimazione degli autovalori di
 % A. Si utilizzi opportunamente la funzione Matlabr qrbasic.m per approssimare
 % l’autovalore λ2(A). Si riportino i valori delle approssimazioni λ(1)_2 , λ(2)_2 e λ(100)_2 
 
-lambda_approx_1 = qrbasic(A, 0, 1);
-lambda_approx_2 = qrbasic(A, 0, 2);
-lambda_approx_100 = qrbasic(A, 0, 100);
+[lambda_approx_1] = qrbasic(A, 0, 1);
+[lambda_approx_2] = qrbasic(A, 0, 2);
+[lambda_approx_100] = qrbasic(A, 0, 100);
 
 fprintf('Autovalore approssimato con 1 iterazione: %f\n', lambda_approx_1(2));
 fprintf('Autovalore approssimato con 2 iterazioni: %f\n', lambda_approx_2(2));

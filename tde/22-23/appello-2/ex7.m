@@ -9,7 +9,7 @@ nmax = 1000;
 
 format long;
 
-eigs = qrbasic(A, tol, nmax);
+[eigs] = qrbasic(A, tol, nmax);
 disp(eigs);
 
 format default;
