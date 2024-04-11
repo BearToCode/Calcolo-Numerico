@@ -32,6 +32,6 @@ function [xvect, it] = corde(a, b, x0, nmax, tol, fun)
     xvect = xvect(1:it+1);
 
     if it == nmax
-        warning('corde- Numero massimo di interazioni raggiunto\n');
+        warning('corde - Numero massimo di interazioni raggiunto\n');
     end
 end

@@ -1,6 +1,6 @@
 function [lambda, x, iter, lambdavec] = invpower(A, tol, nmax, x0)
 %% INVPOWER 
-% metodo delle potenze per la ricerca dell’autovalore di modulo massimo e dell’autovettore associato.
+% metodo delle potenze inverse per la ricerca dell’autovalore di modulo massimo e dell’autovettore associato.
 % 
 % Input:
 % 

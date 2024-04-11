@@ -1,4 +1,4 @@
-function [xk, pk, ak, it] = conjgrad(A,b,x0,nmax,toll)
+function [xk, pk, ak, it] = conjgrad(A, b, x0, nmax, toll)
 %
 % [xk,it] = conjgrad_it(A,b,x0,nmax,toll)
 %

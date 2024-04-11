@@ -9,7 +9,7 @@ A = [1 2 3;
 tol = 1e-6;
 nmax = 1000;
 x0 = [1; 1; 1];
-approx = eigpower(A, tol, nmax, x0);
+[approx] = eigpower(A, tol, nmax, x0);
 
 eigs = eig(A);
 max_eig = max(eigs);
