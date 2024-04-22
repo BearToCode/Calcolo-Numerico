@@ -18,7 +18,7 @@ function [lambda, x, iter, lambdavec] = eigpower(A, tol, nmax, x0)
 %             [ lambda0, lambda1, ..., lambda_iter ] dimensione (iter + 1) x 1
 
 
-	warning('invpower - Controlla gli indici dei vettori!');
+	warning('eigpower - Controlla gli indici dei vettori!');
 
 
 	if check()

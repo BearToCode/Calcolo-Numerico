@@ -11,27 +11,30 @@ function [xvect,it] = secanti(x0, x1, nmax, toll, fun)
 
 % se ho uno zero semplice, il metodo converge con p=1.6
 
-    it=1;
-    xvect(it)=x1;
-    it=2;
-    q=(fun(x1)-fun(x0))/(x1-x0);
-    xvect(it)=x1-fun(x1)/q;
-    err=abs(xvect(it)-xvect(it-1));
-    while (it<nmax && err>toll)
-        x=xvect(it);
-        xold=xvect(it-1);
-        it=it+1;
-        q=(fun(x)-fun(xold))/(x-xold);
-        xvect(it)=x-fun(x)/q;
-        err=abs(xvect(it)-xvect(it-1));
+    xvect = zeros(nmax + 1, 1);
+
+    xvect(1) = x0;
+    xvect(2) = x1;
+    it = 1;
+
+    err = toll + 1;
+    while it < nmax && err > toll
+        it = it + 1;
+        
+        x    = xvect(it);
+        xold = xvect(it - 1);
+        q    = (fun(x) - fun(xold)) / (x - xold);
+        xnew = x - fun(x)/q;
+        
+        err           = abs(xnew - x);
+        xvect(it + 1) = xnew;
     end
 
-    if(it<nmax)
-        fprintf('Convergenza al passo k: %d\n',it);
-    else
-        fprintf('Numero massimo di interazioni raggiunto \n');
+    xvect = xvect(1:it+1);
+
+    if it == nmax
+        warning('secanti - Numero massimo di interazioni raggiunto \n');
     end
-    fprintf('Radice calcolata: %f \n',xvect(end))
 end
 
 

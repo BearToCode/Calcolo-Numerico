@@ -86,7 +86,7 @@ assert(all(abs(A \ b - x) < toll));
 
 %% Teorema di cond. sufficienti per la convergenza del metodo di Gauss-Seidel
 
-% 1. Se A è una matrice diagonale dominante per righe, allora il metodo converge
+% 1. Se A è una matrice diagonale dominante stretta per righe, allora il metodo converge
 % 2. Se A è simmetrica e definita positiva, allora il metodo converge
 
 %% Metodi di Richardson (precondizionati)
