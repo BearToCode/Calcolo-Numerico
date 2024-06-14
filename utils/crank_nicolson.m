@@ -1,4 +1,16 @@
 function [t_h, u_h, iter_pf] = crank_nicolson(f, t_max, y0, h)
+% CRANK_NICOLSON: risolve una equazione differenziale ordinaria
+% mediante il metodo di Crank-Nicolson (metodo di punto fisso)
+%
+% Input:
+% - f: funzione f(t, y) del problema
+% - t_max: tempo massimo
+% - y0: condizione iniziale
+% - h: passo temporale
+%
+% Output:
+% - t_h: tempi discretizzati
+% - u_h: approssimazioni della soluzione
 
 tol  = 10^-5;
 nmax = 100;

@@ -1,5 +1,5 @@
 function [t, u] = rk(f, B, tv, y0, h)
-%% RK: metodo di Runge-Kutta
+% RK: metodo di Runge-Kutta (esplicito)
 %
 % Input:
 % -> f: function che descrive il problema di Cauchy (dichiarata ad esempio tramite
@@ -28,6 +28,8 @@ A = B(1:end-1, 2:end);
 s = length(c);
 assert(size(A, 1) == s && size(A, 2) == s, 'La matrice A deve essere quadrata');
 assert(length(b) == s, 'Il vettore b deve avere la stessa dimensione di c');
+% Verifica che il metodo sia esplicito, ovvero che A sia triangolare inferiore
+assert(all(all(tril(A) == A)), 'Il metodo deve essere esplicito');
 
 u(1) = y0;
 for i = 2:Nh

@@ -1,4 +1,17 @@
 function [t_h, u_h] = eulerfwd_systems(f, tv, y0, Nh)
+% EULERFWD_SYSTEMS: risolve un sistema di equazioni differenziali ordinarie
+% tramite il metodo di Eulero esplicito.
+%
+% Input:
+% - f: function che descrive il problema di Cauchy f(t,y)
+% - tv: vettore che contiene l'istante iniziale e finale dell'intervallo temporale
+% - y0: il dato iniziale del problema di cauchy: y(t=0)=dato_iniziale
+% - Nh: il numero di sottointervalli in cui si suddivide l'intervallo temporale
+%
+% Output:
+% - t_h: vettore contenente gli istanti in cui si calcola la soluzione discreta
+% - u_h: la soluzione discreta calcolata nei nodi temporali t
+
 t0 = tv(1);
 tf = tv(2);
 

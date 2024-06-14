@@ -90,7 +90,7 @@ hold on;
 it = 1;
 
 for n = ns
-    nodes = arrayfun(@(k) chebyshev(I(1), I(2), n, k), 0:n);
+    nodes = arrayfun(@(k) chebyshev(I(1), I(2), n + 1, k), 0:n);
     values = arrayfun(f, nodes);
     p = polyfit(nodes, values, n);
     y = polyval(p, x);

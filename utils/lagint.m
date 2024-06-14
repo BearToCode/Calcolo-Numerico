@@ -9,6 +9,7 @@ for i = 1:length(nodes)
 end
 end
 
+% Funzione caratteristica di Lagrange
 function phi = lphi(nodes, k)
 syms x;
 phi = 1;

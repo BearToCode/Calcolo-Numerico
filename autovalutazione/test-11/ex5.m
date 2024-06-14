@@ -10,8 +10,8 @@ v0 = 0;
 
 h = 0.2;
 
-Nmax=100;
-toll=1e-5;
+Nmax = 100;
+toll = 1e-5;
 
 % Metodo le Leap Frog per problemi di Cauchy del secondo ordine
 

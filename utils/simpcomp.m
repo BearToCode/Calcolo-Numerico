@@ -1,5 +1,14 @@
 function I = simpcomp(a, b, N, fun)
-%% simpcomp: Quadratura di Simpson composita su intervalli equispaziati
+% SIMPCOMP: Quadratura di Simpson composita su intervalli equispaziati
+%
+% Input:
+% - a: estremo inferiore
+% - b: estremo superiore
+% - N: numero di sottointervalli
+% - fun: funzione da integrare
+%
+% Output:
+% - I: approssimazione dell'integrale
 
 h = (b - a) / N;
 
