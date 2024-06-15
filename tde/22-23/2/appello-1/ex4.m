@@ -27,5 +27,5 @@ disp(en); % 2.0535
 
 
 % Stima
-err_approx = approx_err_interp(symf, x, nodes);
+err_approx = approx_interp_err(symf, x, nodes);
 disp(err_approx); % 7.4173

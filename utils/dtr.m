@@ -11,7 +11,13 @@ function [x, u, A, f] = dtr(mu, eta, sigma, fun, a, b, a_cond, b_cond, alpha, be
 % - mu, eta, sigma: coefficienti del problema / funzioni
 % - fun: funzione di carico
 % - a, b: estremi dell'intervallo
-% - a_cond, b_cond: condizioni al contorno ("dirichlet", "neumann_centered", "neumann")
+% - a_cond, b_cond: condizioni al contorno
+%   - "dirichlet": condizione di Dirichlet, alpha/beta scalare
+%   - "neumann": condizione di Neumann, alpha/beta scalare
+%   - "neumann_centered": condizione di Neumann centrata, alpha/beta scalare
+%   - "robin": condizione di Robin, alpha/beta del tipo [a, b, c]
+%   - "robin_centered": condizione di Robin centrata, alpha/beta del tipo [a, b, c]
+%      dove a, b, c sono i valori a*u'(a) + b*u(a) = c
 % - alpha, beta: condizioni al contorno
 % - h: passo di discretizzazione
 %
@@ -20,6 +26,7 @@ function [x, u, A, f] = dtr(mu, eta, sigma, fun, a, b, a_cond, b_cond, alpha, be
 % - x: nodi della griglia [x_0, ..., x_N+1]
 % - A: matrice del sistema lineare
 % - f: vettore del termine noto
+
 x = a:h:b;
 N = length(x) - 2;
 
@@ -41,7 +48,7 @@ else
     sigma = sigma(x)';
 end
 
-conditions = ["dirichlet", "neumann_centered", "neumann"];
+conditions = ["dirichlet", "neumann", "neumann_centered", "robin", "robin_centered"];
 if ~ismember(a_cond, conditions) || ~ismember(b_cond, conditions)
     error("Condizioni al contorno non riconosciute");
 end
@@ -76,7 +83,7 @@ elseif strcmp(a_cond, "neumann_centered")
     
     A = newA;
     f = [alpha; f];
-else % "neumann"
+elseif strcmp(a_cond, "neumann")
     [s, ~] = size(A);
     newA   = sparse(s+1, s+1);
     newA(2:end, 2:end) = A;
@@ -88,6 +95,39 @@ else % "neumann"
     
     A = newA;
     f = [alpha; f];
+elseif strcmp(a_cond, "robin")
+    [s, ~] = size(A);
+    newA   = sparse(s+1, s+1);
+    newA(2:end, 2:end) = A;
+    
+    a = alpha(1);
+    b = alpha(2);
+    c = alpha(3);
+    
+    newA(2, 1) = -mu(1) / h^2 - eta(1)/(2*h);
+    % Differenze finite in avanti + dirichlet
+    newA(1, 1) = a*(-mu(1) / h) + b;
+    newA(1, 2) = a*(mu(2) / h);
+    
+    A = newA;
+    f = [c; f];
+elseif strcmp(a_cond, "robin_centered")
+    [s, ~] = size(A);
+    newA   = sparse(s+1, s+1);
+    newA(2:end, 2:end) = A;
+    
+    a = alpha(1);
+    b = alpha(2);
+    c = alpha(3);
+    
+    newA(2, 1) = -mu(1) / h^2 - eta(1)/(2*h);
+    % Differenze finite centrate + dirichlet
+    newA(1, 1) = a*(-3*mu(1) / (2*h)) + b;
+    newA(1, 2) = a*(2*mu(2)  / h);
+    newA(1, 3) = a*(-mu(3)   / (2*h));
+    
+    A = newA;
+    f = [c; f];
 end
 
 if strcmp(b_cond, "dirichlet")
@@ -106,7 +146,7 @@ elseif strcmp(b_cond, "neumann_centered")
     
     A = newA;
     f = [f; beta];
-else % "neumann"
+elseif strcmp(b_cond, "neumann")
     [s, ~] = size(A);
     newA   = sparse(s+1, s+1);
     newA(1:end-1, 1:end-1) = A;
@@ -118,6 +158,39 @@ else % "neumann"
     
     A = newA;
     f = [f; beta];
+elseif strcmp(b_cond, "robin")
+    [s, ~] = size(A);
+    newA   = sparse(s+1, s+1);
+    newA(1:end-1, 1:end-1) = A;
+    
+    a = beta(1);
+    b = beta(2);
+    c = beta(3);
+    
+    newA(s,   s+1) = -mu(N+2) / h^2 + eta(N+2)/(2*h);
+    % Differenze finite all'indietro + dirichlet
+    newA(s+1, s  ) = a*(-mu(N+1) / h);
+    newA(s+1, s+1) = a*( mu(N+2) / h) + b;
+    
+    A = newA;
+    f = [f; c];
+elseif strcmp(b_cond, "robin_centered")
+    [s, ~] = size(A);
+    newA   = sparse(s+1, s+1);
+    newA(1:end-1, 1:end-1) = A;
+    
+    a = beta(1);
+    b = beta(2);
+    c = beta(3);
+    
+    newA(s,   s+1) = -mu(N+2) / h^2 + eta(N+2)/(2*h);
+    % Differenze finite centrate + dirichlet
+    newA(s+1, s-1) = a*(mu(N  ) / (2*h));
+    newA(s+1, s  ) = a*(-2*mu(N+1) / h);
+    newA(s+1, s+1) = a*(3*mu(N+2) / (2*h)) + b;
+    
+    A = newA;
+    f = [f; c];
 end
 
 u = [prefix (A\f)' suffix]';

@@ -1,5 +1,5 @@
-function err = approx_err_interp(symf, var, nodes)
-% APPROX_ERR_INTERP stima dell'errore di interpolazione su un intervallo
+function err = approx_interp_err_equispaced(symf, var, nodes)
+% APPROX_INTERP_ERR_EQUISPACED: stima dell'errore di interpolazione su un intervallo
 %
 % Input:
 % - symf: funzione simbolica
@@ -13,27 +13,17 @@ n     = length(nodes) - 1;
 a     = nodes(1);
 b     = nodes(end);
 
+% Verifico che i nodi siano equispaziati
+if ~all(diff(nodes) - (nodes(2) - nodes(1)) < 1e-12)
+    error('I nodi non sono equispaziati');
+end
+
 x_space = linspace(a, b, 1000);
 
 symdf  = diff(symf, var, n+1);
 df     = matlabFunction(symdf);
-
-symw = omega(nodes, n);
-w    = matlabFunction(symw);
-
 y_df = arrayfun(df, x_space);
-y_w  = arrayfun(w, x_space);
-
 max_df = max(abs(y_df));
-max_w  = max(abs(y_w));
 
-err = 1 / factorial(n+1) * max_df * max_w;
-end
-
-function f = omega(nodes, n)
-syms x;
-f = 1;
-for i = 1:n+1
-    f = f * (x - nodes(i));
-end
+err = 1 / (4 * (n+1)) * ((b - a) / n)^(n+1) * max_df;
 end

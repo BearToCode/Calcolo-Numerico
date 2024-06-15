@@ -1,5 +1,14 @@
 function I = pmedcomp(a, b, N, fun)
-%% pmedcomp: Quadratura del punto medio composita su intervalli equispaziati
+% PMEDCOMP: Quadratura con formula del punto medio composita su intervalli equispaziati
+%
+% Input:
+% - a: estremo inferiore
+% - b: estremo superiore
+% - N: numero di sottointervalli
+% - fun: funzione da integrare
+%
+% Output:
+% - I: approssimazione dell'integrale
 
 h = (b - a) / N;
 
