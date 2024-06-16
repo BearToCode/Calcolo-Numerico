@@ -1,5 +1,5 @@
 function hmax = linear_abs_stability(A, R)
-%% LINEAR_ABS_STABILITY calcola il passo massimo per la stabilità assoluta
+% LINEAR_ABS_STABILITY calcola il passo massimo per la stabilità assoluta
 % di un metodo numerico per un sistema lineare, dove df(t, y(t))/dy = A;
 %
 % Per esempio f(t, y) = A*y + g(t)

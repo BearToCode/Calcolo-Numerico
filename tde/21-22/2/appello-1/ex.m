@@ -98,11 +98,20 @@ disp(p); % 1.0034
 % h > 0 il metodo di Eulero in avanti risulta assolutamente stabile?
 
 R = stability_function("eulerfwd");
-% Determino df/dx
-% per w: f = -2w - 10x^2 + z(t) => df/dw = -20x
-% per x: f = w => df/dx = 0
-dfdx = @(t, x) -20*x;
-hmax = abs_stability(R, [0, tf], dfdx, sol);
+% Determino df/dy => Jacobiano di f
+t = sym('t');
+y = sym('y', [1, 2]);
+f_sym(t, y) = [-2*y(1) - 10*y(2)^2; y(1)];
+J_sym(t, y) = jacobian(f_sym, y);
+
+x_ex_sym(t) = 2*exp(-t/2)*sin(t);
+w_ex_sym(t) = diff(x_ex_sym, t);
+
+% Sostiuisco y con la soluzione esatta
+J_ex_sym = subs(J_sym, y, [w_ex_sym x_ex_sym]);
+J_ex = matlabFunction(J_ex_sym);
+
+hmax = abs_stability(R, [0 tf], J_ex, sol);
 
 disp(hmax);
 
