@@ -60,8 +60,8 @@ fprintf("Il valore stimato di ||x(kmin) - x||A è %e\n", err_kmin);
 % 4. Per la matrice A e il vettore b assegnati, si applichi il metodo del gradiente im-
 % plementato nella funzione Matlab richardson.m usando la tolleranza sul criterio
 % d’arresto basato sul residuo normalizzato tol = 10^−3, il numero massimo di iter-
-% azioni pari a 10^5 e l’iterata iniziale x(0) = b. Si riportino: il numero N di 
-% iterazioni effettuate, la prima componente della soluzione approssimata 
+% azioni pari a 10^5 e l’iterata iniziale x(0) = b. Si riportino: il numero N di
+% iterazioni effettuate, la prima componente della soluzione approssimata
 % x1 =(x(N))_1 e il valore del residuo normalizzato r(N)_norm = ‖r(N)‖ / ‖b‖ .
 
 tol = 1e-3;

@@ -13,7 +13,6 @@ function [succ,it] = fixedpt_systems(x0,phi,nmax,toll)
 % - xvect   Vett. contenente tutte le iterate calcolate
 %           (l'ultima componente e' la soluzione)
 % - it      Iterazioni effettuate
-%
 
 succ = zeros(length(x0), nmax + 1);
 succ(:, 1) = x0;

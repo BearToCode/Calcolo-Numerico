@@ -1,13 +1,15 @@
 function I = glquad(a, b, N, n, f)
-%% glquad: formula di quadratura di Gauss–Legendre composita completa
-%  INPUT:
-%   a: estremo inferiore dell'intervallo
-%   b: estremo superiore dell'intervallo
-%   N: numero di sottointervalli
-%   n: grado del polinomio di Legendre
-%   f: funzione da integrare
-%  OUTPUT:
-%   I: approssimazione dell'integrale
+% GLQUAD: formula di quadratura di Gauss–Legendre composita completa
+%
+% Input:
+% - a: estremo inferiore dell'intervallo
+% - b: estremo superiore dell'intervallo
+% - N: numero di sottointervalli
+% - n: grado del polinomio di Legendre
+% - f: funzione da integrare
+%
+% Output:
+% - I: approssimazione dell'integrale
 
 poly = compute_poly(n + 1);
 

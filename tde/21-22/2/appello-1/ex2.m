@@ -4,6 +4,11 @@ clear; clc;
 % di Chebyshev-Gauss-Lobatto in [−1, 1]. Senza costruire esplicitamente I3f (x), si
 % fornisca la stima dell’errore di interpolazione ˜e3(f ).
 
-n = 3;
+syms x;
+f = exp(3*x);
+nodes = chebyshev([-1 1], 3+1);
 
-err = 1/(4)
+err = approx_interp_err(f, x, nodes);
+
+% err =
+%    16.9471

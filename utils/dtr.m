@@ -27,6 +27,10 @@ function [x, u, A, f] = dtr(mu, eta, sigma, fun, a, b, a_cond, b_cond, alpha, be
 % - A: matrice del sistema lineare
 % - f: vettore del termine noto
 
+if mu <= 0
+    warning("dtr: mu <= 0");
+end
+
 x = a:h:b;
 N = length(x) - 2;
 

@@ -26,6 +26,10 @@ function [x, u, A, f] = dtr_upwind(mu, eta, sigma, fun, a, b, a_cond, b_cond, al
 % - A: matrice del sistema lineare
 % - f: vettore del termine noto
 
+if mu <= 0
+    warning("dtr_upwind: mu <= 0");
+end
+
 x = a:h:b;
 N = length(x) - 2;
 

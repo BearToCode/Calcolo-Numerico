@@ -3,5 +3,5 @@ function I = trapcomp(a, b, N, fun)
 
 h = (b - a) / N;
 
-I = h/2 * (fun(a) + fun(b)) + h * sum(fun(a+h:h:b-h));
+I = h/2 * (fun(a) + fun(b)) + h * sum(arrayfun(fun, a+h:h:b-h));
 end
