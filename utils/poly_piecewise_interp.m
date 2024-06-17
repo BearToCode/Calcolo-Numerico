@@ -3,7 +3,7 @@ function fn = poly_piecewise_interp(nodes, f, n, strategy)
 %
 % Input:
 % - nodes: nodi di interpolazione
-% - f: funzione da interpolare
+% - f: funzione da interpolare o vettore, se n = 1
 % - n: grado del polinomio di interpolazione
 % - strategy: strategia di scelta dei nodi di interpolazione
 %             - "equispaced": nodi equispaziati
@@ -17,7 +17,13 @@ if ~ismember(strategy, avb_strategies)
     error("Parametro strategy non valido. I valori ammessi sono: 'equispaced', 'chebyshev'");
 end
 
-fn = @(x) eval_poly_piecewise_interp(nodes, f, n, x, strategy);
+if isvector(f)
+    assert(n == 1, "Se f è un vettore, n deve essere 1");
+    values = f;
+    f = @(node) values(nodes == node);
+end
+
+fn = @(x) arrayfun(@(x) eval_poly_piecewise_interp(nodes, f, n, x, strategy), x);
 end
 
 function y = eval_poly_piecewise_interp(nodes, f, n, x, strategy)

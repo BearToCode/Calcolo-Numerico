@@ -15,7 +15,6 @@ function hmax = abs_stability(R, interval, dfdy, sol)
 % di f rispetto a y, all'interno dell'intervallo.
 
 % 1. Determino lambda
-% F = @(t) abs(dfdy(t, sol(t)));
 F = @(t) max(arrayfun(              ...
     @(v) abs(v),                    ...
     reshape(dfdy(t, sol(t)), 1, []) ... % Potrebbe essere una matrice
