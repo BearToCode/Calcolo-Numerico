@@ -1,5 +1,14 @@
 function I = trapcomp(a, b, N, fun)
-%% trapcomp: Quadratura del trapezio composita su intervalli equispaziati
+% TRAPCOMP: Quadratura del trapezio composita su intervalli equispaziati
+%
+% Input:
+% - a: estremo inferiore dell'intervallo
+% - b: estremo superiore dell'intervallo
+% - N: numero di sottointervalli
+% - fun: funzione da integrare
+%
+% Output:
+% - I: approssimazione dell'integrale
 
 h = (b - a) / N;
 

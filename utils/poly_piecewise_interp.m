@@ -17,7 +17,7 @@ if ~ismember(strategy, avb_strategies)
     error("Parametro strategy non valido. I valori ammessi sono: 'equispaced', 'chebyshev'");
 end
 
-if isvector(f)
+if ~isa(f, "function_handle")
     assert(n == 1, "Se f è un vettore, n deve essere 1");
     values = f;
     f = @(node) values(nodes == node);
