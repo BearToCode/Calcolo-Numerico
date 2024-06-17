@@ -7,6 +7,7 @@ function hmax = linear_abs_stability(A, R)
 % Input:
 %  - A: matrice del sistema lineare
 %  - R: funzione di stabilità assoluta
+
 eigs = eig(A);
 F = @(z) abs(R(z)) - 1;
 hmax = inf;

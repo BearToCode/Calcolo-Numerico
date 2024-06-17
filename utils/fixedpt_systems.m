@@ -1,4 +1,4 @@
-function [succ,it] = fixedpt_systems(x0,phi,nmax,toll)
+function [succ,it] = fixedpt_systems(x0, phi, nmax, toll)
 % FIXEDPT_SYSTEMS: metodo del punto fisso per sistemi di equazioni
 %
 % [succ,it] = fixedpt_systems(x0,phi,nmax,toll);

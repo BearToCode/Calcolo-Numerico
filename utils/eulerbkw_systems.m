@@ -12,6 +12,9 @@ function [t_h, u_h] = eulerbkw_systems(f, tv, y0, Nh)
 % - t_h: vettore contenente gli istanti in cui si calcola la soluzione discreta
 % - u_h: la soluzione discreta calcolata nei nodi temporali t
 
+nmax = 1000;
+toll = 1e-6;
+
 t0 = tv(1);
 tf = tv(2);
 
@@ -24,11 +27,12 @@ h = (tf - t0) / Nh;
 u_h(:, 1) = y0;
 for i=1:N_len-1
     % u(n+1) = u(n) + h * f(t(n+1), u(n+1))
-    F = @(u) u_h(:, i) + h * f(t_h(i + 1), u) - u;
+    phi = @(u) u_h(:, i) + h * f(t_h(i + 1), u);
+    x0  = u_h(:, i);
     
-    options = optimoptions('fsolve','Display','none');
-    % Richiede MATLAB R2024a o superiore
-    sol = fsolve(F, u_h(:, i), options);
+    [succ] = fixedpt_systems(x0, phi, nmax, toll);
+    sol    = succ(:, end);
+    
     u_h(:, i+1) = sol;
 end
 
