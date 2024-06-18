@@ -9,7 +9,7 @@ function hmax = linear_abs_stability(A, R)
 %  - R: funzione di stabilità assoluta
 
 eigs = eig(A);
-F = @(z) abs(R(z)) - 1;
+F    = @(z) abs(R(z)) - 1;
 hmax = inf;
 
 for lambda = eigs'
@@ -20,6 +20,8 @@ for lambda = eigs'
         continue; % Non c'è soluzione
     end
     
+    % Mi muovo nel piano complesso lungo la direzione indicata dall'autovalore, cercando
+    % l'intersezione con il limite della regione di stabilità data dalla funzione R
     h = fzero(@(h) F(h * lambda), interval);
     hmax = min(hmax, h);
 end
