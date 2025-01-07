@@ -148,8 +148,8 @@ x0 = 0.3 * ones(n, 1);
 F = A*x + exp(-2*x) - 1;
 
 % Jacobiana automatica
-% [~, ~, xvect] = symnewton(x0, 3, 0, F);
+% [~, ~, xvect] = symnewton(x0, 3, 0, F, x, []);
 
 % Jacobiana manuale
 JF = A - 2*diag(exp(-2*x));
-[~, ~, xvect] = symnewton(x0, 3, 0, F, JF);
+[~, ~, xvect] = symnewton(x0, 3, 0, F, x, JF);

@@ -23,7 +23,8 @@ tf = 5;
 % forma (1), si riporti la definizione di zero-stabilit`a in relazione al metodo di Eulero
 % in avanti. Si definisca tutta la notazione utilizzata.
 
-% Considerando il metodo di Eulero in Avanti:
+% Considerando il metodo di Eulero in Avanti, con u_n soluzione approssimata all'istante n; passo h;
+% Nn numero di sotto-intervalli in cui viene diviso l'intervallo [0, tf]:
 % u_n+1 = u_n + h * f(t_n, u_n)
 % u_0   = y_0
 % E una perturbazione:
@@ -34,7 +35,9 @@ tf = 5;
 %
 % |rho_n| <= eps       per ogni n = 0, 1, ..., Nn
 % implica che
-% |z_n - u_n| <= eps   per ogni n = 0, 1, ..., Nn
+% |z_n - u_n| <= C * eps   per ogni n = 0, 1, ..., Nn
+%
+% dove C è una costante indipendente da h.
 
 %% 2.
 % Dopo aver posto K = 1, si approssimi il problema (1) tramite il metodo di Eulero

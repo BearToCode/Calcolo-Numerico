@@ -9,5 +9,5 @@ syms x1 x2;
 F = [x1 * x2 - 2; -x1 + x1 * exp(x2 - 1)];
 x0 = [3; 2];
 
-x2 = symnewton(x0, 2, 0, F, []);
+x2 = symnewton(x0, 2, 0, F, [x1 x2], []);
 disp(x2); % [2; 1]

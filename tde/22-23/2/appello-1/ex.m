@@ -8,21 +8,24 @@ clear; clc;
 % con y(t) = (x1(t), w2(t), x2(t))T, dove w2(t) = x2'(t). Si riportino le espressioni
 % di A ∈ R3×3, g(t) : (0, tf) → R3, y0 ∈ R3 e tf .
 
-f1 = @(t) (45/4*cos(t) - 3*sin(t) - 16*cos(5*t)) * exp(-t/4);
-f2 = @(t) -(24*cos(t) + 741/4*cos(5*t) + 10*sin(5*t)) * exp(-t/4);
+f1 = @(t) 6/25 * (-5 * sin(2*t) - 100 * cos(t) + 348 * cos(t).^2 - 174) .* exp(-t/5);
+f2 = @(t) 3/5  * (19 * cos(t) - 5 * sin(t) - 40 * cos(t).^2 + 20) .* exp(-t/5);
 
 A = [
-    -4    0    4;
-    8/3   -2/3 -29/3;
-    0     1    0
+    -1/3 -26/3 8/3;
+    1     0    0;
+    0     4    -4;
     ];
+
 g = @(t) [
-    f1(t);
-    f2(t)/3;
-    0
+    f1(t)/3;
+    0;
+    f2(t);
     ];
-y0 = [3; -1; 4];
-tf = 20;
+
+y0 = [-3/5; 3; 3];
+tf = 10;
+
 
 %% 2.
 % Si approssimi il problema tramite il metodo di Heun modificando
@@ -59,8 +62,8 @@ disp(uNh);
 % e h4 = 1.25 · 10−2. Si riportino i valori Ehi per i = 1, . . . , 4
 
 sol_exact = @(t) [
-    3*cos(t).*exp(-t/4);
-    4*cos(5*t).*exp(-t/4);
+    3 * cos(2*t) .* exp(-t/5);
+    3 * cos(t) .* exp(-t/5);
     ];
 
 h_values   = [1e-1, 5e-2, 2.5e-2, 1.25e-2];
@@ -71,10 +74,10 @@ for h = h_values
     Nh = tf/h;
     [t, u] = heun_systems(P, [0, tf], y0, Nh);
     
-    u_x2 = u(3, :);
+    u_x2 = u(2, :);
     
     exact = sol_exact(t);
-    ex_x2 = exact(2, :);
+    ex_x2 = exact(1, :);
     
     err_values(it) = max(abs(u_x2 - ex_x2));
     
@@ -177,8 +180,8 @@ disp(u2_x2);
 disp(uNh_x2);
 
 % u1_x2 =
-%     3.4262
+%     2.9246
 % u2_x2 =
-%     2.0616
+%     2.8222
 % uNh_x2 =
-%     0.0232
+%     -0.3516

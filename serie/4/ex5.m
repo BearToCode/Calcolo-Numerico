@@ -34,7 +34,7 @@ title('Curve di livello di Φ');
 
 x0 = [-0.14;0.14];
 nmax = 5;
-[sol, it, xvect] = symnewton(x0, nmax, 0, sym_f);
+[sol, it, xvect] = symnewton(x0, nmax, 0, sym_f, [x1 x2], []);
 
 figure;
 contour(X1, X2, Z, 100);

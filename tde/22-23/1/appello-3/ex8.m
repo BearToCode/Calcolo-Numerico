@@ -19,6 +19,6 @@ disp(J);
 x0 = [1; 1];
 tol = 1e-6;
 
-[x] = symnewton(x0, 100, tol, f);
+[x] = symnewton(x0, 100, tol, f, [x y], []);
 
 disp(x);
