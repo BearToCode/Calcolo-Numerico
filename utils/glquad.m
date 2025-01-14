@@ -31,7 +31,7 @@ end
 end
 
 function I = normalized(nodes, weights, f)
-I = sum(weights .* f(nodes));
+I = sum(weights .* arrayfun(f, nodes));
 end
 
 function nodes = compute_nodes(poly)
